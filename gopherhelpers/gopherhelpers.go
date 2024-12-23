@@ -142,3 +142,12 @@ func ConvertHTMLToText(htmlContent string) (string, error) {
 	text = strings.ReplaceAll(text, "\n\n\n", "\n\n") // Collapse excessive newlines
 	return text, nil
 }
+
+func SplitRequest(request string) ([]string, []string) {
+	split := strings.Split(request, "\t")
+	selectors := strings.Split(split[0], "/")
+	if len(split) == 1 {
+		return selectors, []string{}
+	}
+	return selectors, split[1:]
+}
